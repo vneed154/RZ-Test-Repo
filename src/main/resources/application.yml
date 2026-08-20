@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: rz-board
+  datasource:
+    url: jdbc:h2:mem:board;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    # OSIV(Open Session In View)를 끄고, 지연 로딩은 반드시 서비스 계층의
+    # 트랜잭션 범위 안에서만 일어나도록 강제한다. (컨트롤러/뷰에서 추가 쿼리 방지)
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        # fetch join으로 못 잡은 컬렉션 지연 로딩이 남아있더라도
+        # N+1 대신 IN 절 배치 조회로 완화한다.
+        default_batch_fetch_size: 100
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+logging:
+  level:
+    org.hibernate.SQL: debug

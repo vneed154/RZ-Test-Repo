@@ -1,0 +1,9 @@
+# 모든 텍스트 파일은 리포지토리 안에서 LF로 통일한다.
+# (Windows에서 core.autocrlf=true여도 이 설정이 우선한다)
+* text=auto eol=lf
+
+# Windows 전용 배치 스크립트만 예외적으로 CRLF 유지
+*.bat text eol=crlf
+
+# 바이너리 파일은 변환 대상에서 제외
+*.jar binary
